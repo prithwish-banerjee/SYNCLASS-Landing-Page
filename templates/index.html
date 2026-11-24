@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNCLASS | AI Attendance from a single class photo</title>
+    <meta name="description" content="SYNCLASS takes attendance with face recognition, voice ID and QR enrollment. Teachers snap one class photo; students enroll with a code.">
+    <meta property="og:title" content="SYNCLASS | AI Attendance">
+    <meta property="og:description" content="Face ID, voice ID and QR enrollment for classroom attendance.">
+    <meta property="og:image" content="{{ url_for('static', filename='img/logo.jpg') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&family=DM+Sans:wght@400;500;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% set app_url = 'https://synclass-main.streamlit.app/' %}
+    {% set img = 'img/demo/' %}
+
+    <header class="nav">
+        <a class="brand" href="#top">
+            <img src="{{ url_for('static', filename='img/icon.png') }}" alt="" width="36" height="36">
+            <span>SYNCLASS</span>
+        </a>
+        <nav aria-label="Main">
+            <a href="#features">Features</a>
+            <a href="#how">How it works</a>
+            <a href="#tech">Technology</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a class="btn btn-yellow btn-sm" href="{{ app_url }}">Open the app</a>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Smart attendance platform</p>
+                <h1>Take attendance from <span>one class photo.</span></h1>
+                <p>SYN Class recognizes students by face or voice and keeps every record in one place. Students join a subject with a QR code, so there is no roster to type in.</p>
+                <div class="actions">
+                    <a class="btn btn-yellow" href="{{ app_url }}">Open the app</a>
+                    <a class="btn btn-ghost" href="#how">See how it works</a>
+                </div>
+                <ul class="facts">
+                    <li>Face ID from a group photo</li>
+                    <li>Voice ID roll call</li>
+                    <li>QR code enrollment</li>
+                </ul>
+            </div>
+            <div class="frame hero-shot">
+                <img src="{{ url_for('static', filename=img ~ 'teacher-dashboard.webp') }}" alt="SYN Class teacher dashboard with the Take AI Attendance screen" width="1400" height="696">
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <div class="wrap">
+                <p class="eyebrow section-kicker">A better way to take attendance</p>
+                <h2>Three ways to mark who is in the room</h2>
+                <p class="lead">Teachers pick the method that suits the class. Students register their face and voice once and reuse them for every session.</p>
+                <div class="bento">
+                    <article class="tile t-face">
+                        <img src="{{ url_for('static', filename=img ~ 'review-attendance.webp') }}" alt="Attendance report showing a student matched from a photo" loading="lazy">
+                        <div>
+                            <h3>Face analysis</h3>
+                            <p>Upload a class photo and SYN Class matches each face against enrolled students. You review the report before anything is saved.</p>
+                        </div>
+                    </article>
+                    <article class="tile t-voice">
+                        <img src="{{ url_for('static', filename=img ~ 'voice-attendance.webp') }}" alt="Voice attendance recording and results" loading="lazy">
+                        <div>
+                            <h3>Sequential voice ID</h3>
+                            <p>Students say "Present" one by one. Each voice is compared with the embedding stored at enrollment.</p>
+                        </div>
+                    </article>
+                    <article class="tile t-qr">
+                        <div>
+                            <h3>QR-driven roster</h3>
+                            <p>Every subject has a code, a join link and a QR code. Students scan it and they are enrolled, with no manual entry for the teacher.</p>
+                        </div>
+                        <img src="{{ url_for('static', filename=img ~ 'share-qr.webp') }}" alt="Share class link dialog with a QR code" loading="lazy">
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="how" class="section dark">
+            <div class="wrap">
+                <h2>How it works</h2>
+                <div class="tabs" role="tablist" aria-label="Choose a role">
+                    <button role="tab" aria-selected="true" data-group="teacher">For teachers</button>
+                    <button role="tab" aria-selected="false" data-group="student">For students</button>
+                </div>
+
+                <div class="walk" data-group="teacher">
+                    <ol class="steps">
+                        <li><button class="on" data-img="teacher-login" data-alt="Teacher login screen"><b>Log in</b><span>Sign in with a username and password to open your dashboard.</span></button></li>
+                        <li><button data-img="create-subject" data-alt="Create New Subject dialog"><b>Create a subject</b><span>Add a subject code, name and section. Each subject keeps its own roster.</span></button></li>
+                        <li><button data-img="share-qr" data-alt="Share class link with QR code"><b>Share the join code</b><span>Give students the QR code or link so they can enroll themselves.</span></button></li>
+                        <li><button data-img="teacher-dashboard" data-alt="Take AI Attendance screen"><b>Take attendance</b><span>Add class photos and run face analysis, or switch to voice attendance.</span></button></li>
+                        <li><button data-img="review-attendance" data-alt="Attendance report to review"><b>Review and confirm</b><span>Check each match, then save the report or discard it.</span></button></li>
+                        <li><button data-img="voice-attendance" data-alt="Voice attendance dialog"><b>Run a voice roll call</b><span>Record students one at a time and see who was matched or marked absent.</span></button></li>
+                        <li><button data-img="records" data-alt="Attendance Records table"><b>Look back at records</b><span>Every saved session is listed by time, subject and students present.</span></button></li>
+                    </ol>
+                    <div class="frame shot"><img src="{{ url_for('static', filename=img ~ 'teacher-login.webp') }}" alt="Teacher login screen" width="1400" height="700" loading="lazy"></div>
+                </div>
+
+                <div class="walk" data-group="student" hidden>
+                    <ol class="steps">
+                        <li><button class="on" data-img="student-faceid" data-alt="Student Face ID login"><b>Log in with Face ID</b><span>Take a photo to sign in. Your face and voice are registered once.</span></button></li>
+                        <li><button data-img="student-enroll" data-alt="Enroll in Subject dialog"><b>Enroll in a subject</b><span>Enter the subject code from your teacher, or scan their QR code.</span></button></li>
+                        <li><button data-img="student-dashboard" data-alt="Student dashboard with enrolled subjects"><b>Track your attendance</b><span>See your enrolled subjects with classes held and classes attended.</span></button></li>
+                    </ol>
+                    <div class="frame shot"><img src="{{ url_for('static', filename=img ~ 'student-faceid.webp') }}" alt="Student Face ID login" width="1400" height="700" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="section">
+            <div class="wrap narrow">
+                <p class="eyebrow section-kicker">Under the hood</p>
+                <h2>Built with</h2>
+                <dl class="tech">
+                    <div><dt>Streamlit and Flask</dt><dd>Streamlit runs the app. Flask serves this landing page.</dd><span>Platform</span></div>
+                    <div><dt>face_recognition and dlib</dt><dd>Face detection and matching for photo attendance.</dd><span>Vision</span></div>
+                    <div><dt>Resemblyzer and Librosa</dt><dd>Voice embeddings that identify each student's voice.</dd><span>Audio</span></div>
+                    <div><dt>Supabase</dt><dd>PostgreSQL database with authentication and sync.</dd><span>Storage</span></div>
+                </dl>
+            </div>
+        </section>
+
+        <section id="contact" class="cta">
+            <div class="wrap">
+                <img src="{{ url_for('static', filename='img/icon.png') }}" alt="SYNCLASS logo" width="96" height="96">
+                <p class="cta-brand">SYNCLASS</p>
+                <h2>Try <span style="font-family: 'Climate Crisis', cursive;">SYNCLASS</span> with your own class</h2>
+                <p>Built by Prithwish Banerjee. Questions, feedback or ideas are welcome.</p>
+                <div class="actions center">
+                    <a class="btn btn-yellow" href="{{ app_url }}">Open the app</a>
+                    <a class="btn btn-ghost" href="mailto:prithwishb60@gmail.com">Email me</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>&copy; <span id="yr">2026</span> <span style="font-family: 'Climate Crisis', cursive;">SYNCLASS</span>. Created by Prithwish Banerjee.</span>
+        <span class="links">
+            <a href="https://github.com/prithwish-banerjee" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/prithwish-banerjee-624a59359" rel="noopener">LinkedIn</a>
+            <a href="mailto:prithwishb60@gmail.com">Email</a>
+        </span>
+    </footer>
+
+    <script>window.DEMO_BASE = "{{ url_for('static', filename='img/demo/') }}";</script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
